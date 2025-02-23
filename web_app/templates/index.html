@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Type Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Crime Type Prediction</h2>
+        <form action="/predict" method="POST">
+            <label for="area">Area:</label>
+            <input type="number" id="area" name="area" required>
+
+            <label for="weapon_used">Weapon Used:</label>
+            <input type="number" id="weapon_used" name="weapon_used" required>
+
+            <label for="victim_age">Victim Age:</label>
+            <input type="number" id="victim_age" name="victim_age" required>
+
+            <label for="victim_sex">Victim Sex:</label>
+            <select id="victim_sex" name="victim_sex">
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="X">Unknown</option>
+                <option value="H">Other</option>
+                <option value="-">Not Specified</option>
+            </select>
+
+            <button type="submit">Predict Crime Type</button>
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
